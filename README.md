@@ -5,7 +5,7 @@ This library creates a new instance of "Partyflock" for you, exposing a few meth
 
 To start a new Partyflock instance:
 
-```
+```js
 var Partyflock = require('partyflock');
 
 var partyflockInstance = new Partyflock(consumerKey, consumerSecret, endpoint /* optional */, debug /* optional */)
@@ -22,7 +22,7 @@ You can run the tests by copying `config/data.example.js` to `config/data.js` an
 
 Then it's as easy as:
 
-```
+```sh
 ~ npm test
 ```
 
@@ -36,7 +36,7 @@ Then it's as easy as:
 
 ### partyflockInstance.artist.lookup
 
-```
+```js
 partyflockInstance.artist.lookup('1').then(function(res) {
   // Returns artist Object with artist info
 });
@@ -44,7 +44,7 @@ partyflockInstance.artist.lookup('1').then(function(res) {
 
 ### partyflockInstance.artist.search
 
-```
+```js
 partyflockInstance.artist.search('frontl%').then(function(res) {
   // Returns array with artist Objects
 });
@@ -53,7 +53,7 @@ partyflockInstance.artist.search('frontl%').then(function(res) {
 
 ## Date
 
-```
+```js
 partyflockInstance.date.lookup('20151012').then(function(res) {
   // Returns object with agenda information, res.date.agenda contains array of parties
 });
@@ -61,7 +61,7 @@ partyflockInstance.date.lookup('20151012').then(function(res) {
 
 **Alternative headers**
 
-```
+```js
 var headers = {
   'Pf-ResultWish': 'date(agenda(party(name,fbid,stamp,notime,door_close_hour,door_close_mins,duration_secs,genre(name),flyer(type,size=thumb,width,height,link),location(name,address,zipcode,latitude,longitude,city(name,country(name))),organization(name),area(incomplete,lineup(time_start,time_end,artist(name))))))'
 };
@@ -131,20 +131,20 @@ partyflockInstance.date.lookup('20151012', headers).then(function(res) {
 
 ## Location
 
-```
+```js
 partyflockInstance.location.lookup('7731').then(function(res) {
   // Returns location Object with location information
 });
 ```
 
 Two locations in the same requests:
-```
+```js
 partyflockInstance.location.lookup('7731, 21').then(function(res) {
   // Returns array with location Objects
 });
 ```
 
-```
+```js
 partyflockInstance.location.search('ziggo%').then(function(res) {
   // Returns array with location Objects
 });
@@ -152,7 +152,7 @@ partyflockInstance.location.search('ziggo%').then(function(res) {
 
 **Alternative headers**
 
-```
+```js
 var headers = {
   'Pf-ResultWish': 'location(name,flyer(type,size=thumb,width,height,link),address,zipcode,latitude,longitude,city(name,country(name)),agenda(party(name,stamp,notime,duration_secs,genre(name),flyer(type,size=thumb,width,height,link),organization(name),area(lineup(time_start,time_end,artist(name))))))'
 };
@@ -178,7 +178,7 @@ partyflockInstance.location.search('ziggo%', headers).then(function(res) {
 
 ## Party
 
-```
+```js
 partyflockInstance.party.search('unlocked').then(function(res) {
   // Returns array with party Objects 
 })
@@ -186,7 +186,7 @@ partyflockInstance.party.search('unlocked').then(function(res) {
 
 **Alternative headers**
 
-```
+```js
 // when sending custom headers for search, don't forget to add your search parameter (unlocked)
 var headers = {
   'Pf-ResultWish': 'party(name=unlocked,stamp<'+moment.utc().unix()+')'
@@ -207,7 +207,7 @@ partyflockInstance.party.search('unlocked', headers).then(function(res) {
 
 ## User
 
-```
+```js
 partyflockInstance.user.lookup('2269').then(function(res) {
   // Returns user Object
 });
