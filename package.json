@@ -7,13 +7,11 @@
     "test-integration": "node test/run integration",
     "test-int": "node test/run integration"
   },
-  "name": "node-partyflock-api",
+  "name": "partyflock",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^2.6.2",
-    "moment": "^2.9.0",
-    "oauth": "git://github.com/DeviaVir/node-oauth.git#partyflock",
-    "request-promise": "^0.4.0"
+    "oauth": "git://github.com/DeviaVir/node-oauth.git#partyflock"
   },
   "devDependencies": {
     "chai": "^1.10.0",
@@ -23,17 +21,18 @@
     "mocha": "^1.21.5",
     "optimist": "^0.6.1",
     "sinon": "^1.12.2",
-    "sinon-chai": "^2.6.0"
+    "sinon-chai": "^2.6.0",
+    "moment": "^2.9.0"
   },
   "description": "Promise-based library to communicate with the Partyflock API",
   "version": "0.0.5",
-  "main": "vultr.js",
+  "main": "partyflock.js",
   "directories": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DeviaVir/node-partyflock-api.git"
+    "url": "https://github.com/DeviaVir/node-partyflock.git"
   },
   "keywords": [
     "partyflock",
@@ -45,7 +44,7 @@
   ],
   "author": "Chase Sillevis <chase@sillevis.net> (http://chase.sillevis.net/)",
   "bugs": {
-    "url": "https://github.com/DeviaVir/node-partyflock-api/issues"
+    "url": "https://github.com/DeviaVir/node-partyflock/issues"
   },
-  "homepage": "https://github.com/DualDev/node-partyflock-api"
+  "homepage": "https://github.com/DualDev/node-partyflock"
 }

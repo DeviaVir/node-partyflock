@@ -1,7 +1,6 @@
 'use strict';
 
 var Promise = require('bluebird'),
-    request = require('request-promise'),
     OAuth = require('oauth');
 
 var config = require('./config');
@@ -19,11 +18,12 @@ var date = require(__dirname + '/lib/date'),
  * @prototype
  * @class  Partyflock
  */
-function Partyflock(consumerKey, consumerSecret, endpoint, type) {
-  this.endpoint = (endpoint ? endpoint : config.partyflock.endpoint);
+function Partyflock(consumerKey, consumerSecret, endpoint, debug) {
+  this.endpoint = (endpoint ? endpoint : (config.partyflock.endpoint ? config.partyflock.endpoint : 'partyflock.nl'));
   this.consumerKey = (consumerKey ? consumerKey : config.partyflock.consumerKey);
   this.consumerSecret = (consumerSecret ? consumerSecret : config.partyflock.consumerSecret);
-  this.type = (type ? type : config.partyflock.type);
+  this.type = 'json';
+  this.debug = (typeof debug !== 'undefined' ? debug : (config.partyflock.debug !== 'undefined' ? config.partyflock.debug : false));
 
   this.date = new date(this);
   this.location = new location(this);
@@ -57,7 +57,9 @@ Partyflock.prototype.communicate = function communicate(service, id, headers) {
 
     _this.oauth.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results) {
       if(error) {
-        console.error('Error occurred while handling getOAuthRequestToken', error);
+        if(_this.debug) {
+          console.error('node-partyflock: Error occurred while handling getOAuthRequestToken', error);
+        }
 
         return god.reject(error);
       }
@@ -73,7 +75,10 @@ Partyflock.prototype.communicate = function communicate(service, id, headers) {
 
     _this.oauth.get('https://' + _this.endpoint + '/' + service + '/' + id + '.' + _this.type, oauth_token, oauth_token_secret, function(error, data, response) {
       if(error) {
-        console.error('Error occured while handling get', error);
+        if(_this.debug) {
+          console.error('node-partyflock: Error occured while handling get', error);
+        }
+
         return god.reject(error);
       }
 
@@ -85,12 +90,17 @@ Partyflock.prototype.communicate = function communicate(service, id, headers) {
     try {
       data = JSON.parse(data);
     } catch(e) {
-      console.info('Parsing data to JSON failed', e);
+      if(_this.debug) {
+        console.info('node-partyflock: Parsing data to JSON failed', e);
+      }
     }
 
     return data;
   }).catch(function(err) {
-    console.error('Landed in error state with', err);
+    if(_this.debug) {
+      console.error('node-partyflock: Landed in error state with', err);
+    }
+    
     return false;
   });
 };

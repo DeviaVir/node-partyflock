@@ -14,7 +14,15 @@ var Partyflock = require( '../partyflock' );
     it( 'should return user lookup', function(done) {
       this.timeout(5000);
       return partyflockInstance.user.lookup('2269').then(function(info) {
-        console.log('info', info);
+        expect(info.user).to.be.ok();
+        expect(info.user.id).to.eql(2269);
+      }).then(done, done);
+    });
+
+    it( 'should return false', function(done) {
+      this.timeout(5000);
+      return partyflockInstance.user.lookup('-1').then(function(info) {
+        expect(info).to.not.be.ok();
       }).then(done, done);
     });
   });

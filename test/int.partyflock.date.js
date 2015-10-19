@@ -1,5 +1,3 @@
-var Promise = require( 'bluebird' );
-
 var Partyflock = require( '../partyflock' );
 
 describe('I:Partyflock:date', function() {
@@ -11,10 +9,18 @@ describe('I:Partyflock:date', function() {
       partyflockInstance = new Partyflock();
     });
 
-    it( 'should return date lookup', function(done) {
+    it( 'should return date information', function(done) {
       this.timeout(5000);
-      return partyflockInstance.date.lookup('20151017').then(function(info) {
-        console.log('info', info);
+      return partyflockInstance.date.lookup('20151012').then(function(info) {
+        expect(info.date.agenda).to.be.ok();
+        expect(typeof info.date.agenda).to.eql('object');
+      }).then(done, done);
+    });
+
+    it( 'should return false', function(done) {
+      this.timeout(5000);
+      return partyflockInstance.date.lookup('-1').then(function(info) {
+        expect(info).to.not.be.ok();
       }).then(done, done);
     });
   });

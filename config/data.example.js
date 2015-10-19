@@ -2,8 +2,8 @@ var config = {
   "partyflock": {
     "consumerKey": "consumer_key",
     "consumerSecret": "consumer_secret",
-    "endpoint": "hostname",
-    "type": "json" // json, debug, xml, phpvar
+    "endpoint": "hostname", // usually partyflock.nl
+    "debug": false // show console debug information
   }
 };
 
