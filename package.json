@@ -25,7 +25,7 @@
     "moment": "^2.9.0"
   },
   "description": "Promise-based library to communicate with the Partyflock API",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "partyflock.js",
   "directories": {
     "test": "test"
