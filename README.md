@@ -13,6 +13,17 @@ var partyflockInstance = new Partyflock(consumerKey, consumerSecret, endpoint /*
 
 `consumerKey` and `consumerSecret` can be requested via `kantoor@partyflock.nl`, with a brief explanation for the purpose. `endpoint` will usually be `partyflock.nl` and can be left empty if you're using that endpoint.
 
+# Installing
+
+Run in your project root:
+```sh
+~ npm install --save partyflock
+```
+
+Require in your code:
+```js
+var Partyflock = require('partyflock');
+```
 
 # Running the integration tests
 
