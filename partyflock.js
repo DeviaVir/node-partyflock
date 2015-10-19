@@ -22,6 +22,13 @@ function Partyflock(consumerKey, consumerSecret, endpoint, debug) {
   this.endpoint = (endpoint ? endpoint : (config.partyflock.endpoint ? config.partyflock.endpoint : 'partyflock.nl'));
   this.consumerKey = (consumerKey ? consumerKey : config.partyflock.consumerKey);
   this.consumerSecret = (consumerSecret ? consumerSecret : config.partyflock.consumerSecret);
+
+  // CI integration
+  if(process.env['CONSUMER_KEY'] && process.env['CONSUMER_SECRET']) {
+    this.consumerKey = process.env['CONSUMER_KEY'];
+    this.consumerSecret = process.env['CONSUMER_SECRET'];  
+  }
+
   this.type = 'json';
   this.debug = (typeof debug !== 'undefined' ? debug : (config.partyflock.debug !== 'undefined' ? config.partyflock.debug : false));
 

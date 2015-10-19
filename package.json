@@ -25,14 +25,14 @@
     "moment": "^2.9.0"
   },
   "description": "Promise-based library to communicate with the Partyflock API",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "partyflock.js",
   "directories": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DeviaVir/node-partyflock.git"
+    "url": "git+https://github.com/DeviaVir/node-partyflock.git"
   },
   "keywords": [
     "partyflock",
