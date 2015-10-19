@@ -20,27 +20,25 @@ var date = require(__dirname + '/lib/date'),
  */
 function Partyflock(consumerKey, consumerSecret, endpoint, debug) {
   this.endpoint = 'partyflock.nl';
-
   // Check instance arguments
   this.endpoint = (endpoint ? endpoint : this.endpoint);
   this.consumerKey = (consumerKey ? consumerKey : false);
   this.consumerSecret = (consumerSecret ? consumerSecret : false);
-
+  this.debug = (typeof debug !== 'undefined' ? debug : false);
   // Check config options
   if(config.partyflock) {
     this.consumerKey = (this.consumerKey === false ? config.partyflock.consumerKey : false);
     this.consumerSecret = (this.consumerSecret === false ? config.partyflock.consumerSecret : false);
     this.endpoint = (this.endpoint !== config.partyflock.endpoint ? config.partyflock.endpoint : this.endpoint);
+    this.debug = (this.debug === false && config.partyflock.debug !== 'undefined' ? config.partyflock.debug : this.debug);
   }
-
   // CI integration
   if(process.env['CONSUMER_KEY'] && process.env['CONSUMER_SECRET']) {
     this.consumerKey = process.env['CONSUMER_KEY'];
     this.consumerSecret = process.env['CONSUMER_SECRET'];  
   }
-
   this.type = 'json';
-  this.debug = (typeof debug !== 'undefined' ? debug : (config.partyflock.debug !== 'undefined' ? config.partyflock.debug : false));
+
 
   this.date = new date(this);
   this.location = new location(this);
