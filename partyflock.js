@@ -19,9 +19,19 @@ var date = require(__dirname + '/lib/date'),
  * @class  Partyflock
  */
 function Partyflock(consumerKey, consumerSecret, endpoint, debug) {
-  this.endpoint = (endpoint ? endpoint : (config.partyflock.endpoint ? config.partyflock.endpoint : 'partyflock.nl'));
-  this.consumerKey = (consumerKey ? consumerKey : config.partyflock.consumerKey);
-  this.consumerSecret = (consumerSecret ? consumerSecret : config.partyflock.consumerSecret);
+  this.endpoint = 'partyflock.nl';
+
+  // Check instance arguments
+  this.endpoint = (endpoint ? endpoint : this.endpoint);
+  this.consumerKey = (consumerKey ? consumerKey : false);
+  this.consumerSecret = (consumerSecret ? consumerSecret : false);
+
+  // Check config options
+  if(config.partyflock) {
+    this.consumerKey = (this.consumerKey === false ? config.partyflock.consumerKey : false);
+    this.consumerSecret = (this.consumerSecret === false ? config.partyflock.consumerSecret : false);
+    this.endpoint = (this.endpoint !== config.partyflock.endpoint ? config.partyflock.endpoint : this.endpoint);
+  }
 
   // CI integration
   if(process.env['CONSUMER_KEY'] && process.env['CONSUMER_SECRET']) {
