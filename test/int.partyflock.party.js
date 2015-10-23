@@ -28,4 +28,26 @@ var Partyflock = require( '../partyflock' );
       }).then(done, done);
     });
   });
+
+  describe( 'lookup', function() {
+    var partyflockInstance;
+    beforeEach(function() {
+      partyflockInstance = new Partyflock();
+    });
+
+    it( 'should return party lookup', function(done) {
+      this.timeout(5000);
+      return partyflockInstance.party.lookup('1').then(function(info) {
+        expect(info.party).to.be.ok();
+        expect(info.party.id).to.eql(1);
+      }).then(done, done);
+    });
+
+    it( 'should return false', function(done) {
+      this.timeout(5000);
+      return partyflockInstance.party.lookup('-1').then(function(info) {
+        expect(info).to.not.be.ok();
+      }).then(done, done);
+    });
+  });
 });
