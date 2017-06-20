@@ -1,6 +1,8 @@
 [![partyflock_logo_and_text_for_light_3000px](https://cloud.githubusercontent.com/assets/777823/10575029/0ab3e2fc-765a-11e5-9791-2668eef0b3e8.png)](https://partyflock.nl/)
 
 #  node-partyflock
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/DeviaVir/node-partyflock.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/DeviaVir/node-partyflock.svg?branch=master)](https://travis-ci.org/DeviaVir/node-partyflock)
 
 Node.JS Promise-based library to communicate with the Partyflock API
