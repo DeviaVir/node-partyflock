@@ -1,3 +1,7 @@
+# BE ADVISED: THE PARTYFLOCK API IS NO LONGER AVAILABLE
+
+Partyflock and Appic have fused and there no longer is a public API. This library now serves as archive material.
+
 [![partyflock_logo_and_text_for_light_3000px](https://cloud.githubusercontent.com/assets/777823/10575029/0ab3e2fc-765a-11e5-9791-2668eef0b3e8.png)](https://partyflock.nl/)
 
 #  node-partyflock
